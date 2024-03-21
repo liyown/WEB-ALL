@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./static/css/button.css" rel="stylesheet"/>
+    <link href="./static/css/font.css" rel="stylesheet"/>
+    <link href="./static/css/input.css" rel="stylesheet"/>
+    <link href="./static/css/div.css" rel="stylesheet"/>
+    <script src="./static/js/usercheck.js" type="text/javascript"> </script>
+
+
+</head>
+<body>
+    <h1 style="text-align: center;font-size: 50px;" class="font12lishu">注册页面</h1>
+    <h5 style="text-align: center;" class="font12lishu">欢迎</h5>
+    <div class="div1">
+        <form action="login.html" method="post" onsubmit="return submitCheck()">
+            <!-- 输入框 -->
+            <span class="font12lishu">账号：</span>
+            <input id="uerNameInput" class="text" name="username" onblur="userNameLostCheck()"/><br/>
+            <span class="font12lishu">密码：</span>
+            <input id="passWordInput" type="password" class="text" name="password" onblur="passWordLostCheck()"/><br/>
+            <!-- 提交框 -->
+            <input type="submit" class="btn font12lishu" value="注册"/>
+            <input type="reset" class="btn font12lishu" value="重置" onclick="resetMessage()"/>
+            <button class="btn">
+                <a href="login.html" class="font12lishu">去登录</a>
+            </button>
+        </form>
+        <!-- 错误信息 -->
+        <span id="userFaultMessage" class="font8lishu"></span><br/>
+        <span id="passWordFaultMessage" class="font8lishu"></span>
+    </div>
+
+    
+</body>
+</html>
