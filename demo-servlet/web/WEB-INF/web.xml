@@ -3,4 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <!--
+        1配置Servlet类，起一个别名
+        servlet-name 别名
+        servlet-class 用于关联请求的类
+    -->
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.lyw.servlet.UserServlet</servlet-class>
+    </servlet>
+
+    <!--
+        将别名代表的对象与访问路径绑定
+    -->
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
