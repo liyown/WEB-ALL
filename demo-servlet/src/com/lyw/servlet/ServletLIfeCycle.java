@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import javax.swing.*;
 import java.io.IOException;
 @WebServlet(value = "/servletlifecycle", loadOnStartup = -1)
 public class ServletLIfeCycle extends HttpServlet {
@@ -24,4 +25,21 @@ public class ServletLIfeCycle extends HttpServlet {
 
 
     }
+
 }
+
+/*
+*   1 顶级的ServLet接口
+    public interface Servlet {
+        初始化方法，梅造完华后，itomcat 白动用完成初始化功能的方法
+        void init(ServletConfig var1) throis ServletException;
+        获规ServLetConfia对象的方法
+        ServletConfig getServletConfig();
+        接收用户诗求，向用于响应信息的方法
+        void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;
+        返国Servlet宁符中形式城达信息的方法
+        String getServletInfo();
+        ServLet在回收前，ftomcat 湖用的销爱方法，往往用于微资源的释放工作
+        void destroy();
+    }
+* */
