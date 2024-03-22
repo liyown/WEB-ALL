@@ -33,7 +33,7 @@ public class ServletA extends HttpServlet {
         *   *不可以访问外部资源
         *
         * */
-        RequestDispatcher servletB = req.getRequestDispatcher("ServletB");
+        RequestDispatcher servletB = req.getRequestDispatcher("servletb");
         servletB.forward(req, resp);
 
     }
