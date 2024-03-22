@@ -24,7 +24,8 @@ public class ServletContext extends HttpServlet {
 
         //  4   获得项目的访问路径
         //      为了获取资源的绝对路径或者相对路径使用的
-        String appPath = servletContext.getContextPath();
+        String appPath = servletContext.getContextPath();// /demo_servletconfig_servletcontext_war_exploded
+        System.out.println(appPath);
 
         // 向 servletContext 存放，修改，获取，删除数据 键值对
         servletContext.setAttribute("k", "v");

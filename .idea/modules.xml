@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/WEB-ALL.iml" filepath="$PROJECT_DIR$/.idea/WEB-ALL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-serverletforwardandredirct/demo-serverletforwardandredirct.iml" filepath="$PROJECT_DIR$/demo-serverletforwardandredirct/demo-serverletforwardandredirct.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-servlet/demo-servlet.iml" filepath="$PROJECT_DIR$/demo-servlet/demo-servlet.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-servletconfig-servletcontext/demo-servletconfig-servletcontext.iml" filepath="$PROJECT_DIR$/demo-servletconfig-servletcontext/demo-servletconfig-servletcontext.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo01/demo01.iml" filepath="$PROJECT_DIR$/demo01/demo01.iml" />
