@@ -22,4 +22,27 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>UrlParternServlet</servlet-name>
+        <servlet-class>com.lyw.servlet.UrlParternServlet</servlet-class>
+    </servlet>
+    <!--
+        一个Servlet可以对应多个url-partern
+        /对应的是app的根目录
+        一个servlet可以对应多个servlet-maping
+
+        url-partern的写法：
+            1、精确匹配
+                /servlet
+            2、模糊匹配
+                /*          匹配全部
+                /           匹配全部，但是不包含jsp文件
+                *.acton     前缀写法，匹配后缀是.action
+    -->
+    <servlet-mapping>
+        <servlet-name>UrlParternServlet</servlet-name>
+        <url-pattern>/UrlParternServlet</url-pattern>
+        <url-pattern>/UrlParternServlet1</url-pattern>
+    </servlet-mapping>
+
 </web-app>
