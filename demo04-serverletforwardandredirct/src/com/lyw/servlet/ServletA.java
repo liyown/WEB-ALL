@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -33,8 +34,9 @@ public class ServletA extends HttpServlet {
         *   *不可以访问外部资源
         *
         * */
-        RequestDispatcher servletB = req.getRequestDispatcher("servletb");
-        servletB.forward(req, resp);
-
+        System.out.println(req.getParameter("username"));
+        System.out.println(req.getParameter("name1"));
+        // RequestDispatcher servletB = req.getRequestDispatcher("servletb");
+        // servletB.forward(req, resp);
     }
 }
