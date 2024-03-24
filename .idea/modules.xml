@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/demo03-servletconfig-servletcontext/demo03-servletconfig-servletcontext.iml" filepath="$PROJECT_DIR$/demo03-servletconfig-servletcontext/demo03-servletconfig-servletcontext.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo04-serverletforwardandredirct/demo04-serverletforwardandredirct.iml" filepath="$PROJECT_DIR$/demo04-serverletforwardandredirct/demo04-serverletforwardandredirct.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo05-cookie/demo05-cookie.iml" filepath="$PROJECT_DIR$/demo05-cookie/demo05-cookie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo06-filter/demo06-filter.iml" filepath="$PROJECT_DIR$/demo06-filter/demo06-filter.iml" />
       <module fileurl="file://$PROJECT_DIR$/schedule_system/schedule_system.iml" filepath="$PROJECT_DIR$/schedule_system/schedule_system.iml" />
     </modules>
   </component>

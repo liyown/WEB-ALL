@@ -53,7 +53,7 @@ public class SysUserController extends BaseController {
      * @param request  请求
      * @param response 响应
      */
-    protected void login(HttpServletRequest request, HttpServletResponse response) {
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //     接收用户参数
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -63,25 +63,16 @@ public class SysUserController extends BaseController {
 
         if (loginFlag == 0) {
             // 登录成功
-            try {
-                response.sendRedirect(request.getContextPath() + "/showSchedule.html");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            request.getSession().setAttribute("SysUser", sysUser);
+            response.sendRedirect(request.getContextPath() + "/showSchedule.html");
         } else if (loginFlag == -1) {
             // 密码错误
-            try {
-                response.sendRedirect(request.getContextPath() + "/loginUserPasswordError.html");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            response.sendRedirect(request.getContextPath() + "/loginUserPasswordError.html");
+
         } else {
             // 用户不存在
-            try {
-                response.sendRedirect(request.getContextPath() + "/loginUserNameError.html");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            response.sendRedirect(request.getContextPath() + "/loginUserNameError.html");
+
         }
 
     }
