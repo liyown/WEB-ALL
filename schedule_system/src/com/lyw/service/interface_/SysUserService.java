@@ -18,8 +18,10 @@ public interface SysUserService {
 
     /**
      * 登录
+     *
      * @param sysUser 用户对象
      * @return 返回登录状态 0 登录成功 -1 密码错误 -2 用户不存在
      */
-    int login(SysUser sysUser);
+
+    SysUser findUser(SysUser sysUser);
 }

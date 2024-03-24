@@ -37,7 +37,6 @@ public class UserServlet extends HttpServlet {
         *
         *  */
         String userName = req.getParameter("userName");
-
         String info = "YES";
 
         if ("liuyaowen".equals(userName)) {

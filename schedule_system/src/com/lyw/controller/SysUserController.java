@@ -1,8 +1,10 @@
 package com.lyw.controller;
 
+import com.lyw.common.ResultCodeEnum;
 import com.lyw.pojo.SysUser;
 import com.lyw.service.impl.SysUserServiceImpl;
-import com.lyw.service.interface_.SysUserService;
+import com.lyw.util.MD5;
+import com.lyw.util.WebUtil;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -59,21 +61,36 @@ public class SysUserController extends BaseController {
         String password = request.getParameter("password");
         //  调用服务方法
         SysUser sysUser = new SysUser(null, username, password);
-        int loginFlag = sysUserService.login(sysUser);
+        SysUser findSysUser = sysUserService.findUser(sysUser);
 
-        if (loginFlag == 0) {
-            // 登录成功
-            request.getSession().setAttribute("SysUser", sysUser);
-            response.sendRedirect(request.getContextPath() + "/showSchedule.html");
-        } else if (loginFlag == -1) {
-            // 密码错误
-            response.sendRedirect(request.getContextPath() + "/loginUserPasswordError.html");
-
+        if (findSysUser != null) {
+            if (findSysUser.getUserPwd().equals(MD5.encrypt(password))) {
+                // 登录成功
+                request.getSession().setAttribute("SysUser", findSysUser);
+                response.sendRedirect("/showSchedule.html");
+            } else {
+                response.sendRedirect("/loginUserPasswordError.html");
+            }
         } else {
             // 用户不存在
-            response.sendRedirect(request.getContextPath() + "/loginUserNameError.html");
+            response.sendRedirect("/loginUserNameError.html");
 
         }
+    }
 
+    protected void isUserExist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //     接收用户参数
+        String username = request.getParameter("username");
+        //  调用服务方法
+        SysUser sysUser = new SysUser(null, username, null);
+        SysUser findSysUser = sysUserService.findUser(sysUser);
+        response.setContentType("application/json;charset=utf-8");
+        if (findSysUser != null) {
+            // 用户存在
+            WebUtil.writeJsonToResponse(response, ResultCodeEnum.USERNAME_EXIST, null);
+        } else {
+            // 用户不存在
+            WebUtil.writeJsonToResponse(response, ResultCodeEnum.SUCCESS, null);
+        }
     }
 }

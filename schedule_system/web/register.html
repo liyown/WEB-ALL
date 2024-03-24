@@ -19,9 +19,9 @@
         <form action="/user/register" method="post" onsubmit="return submitCheck()">
             <!-- 输入框 -->
             <span class="font12lishu">账号：</span>
-            <input id="uerNameInput" class="text" name="username" onblur="userNameLostCheck()"/><br/>
+            <input class="text" id="uerNameInput" name="username" onblur="userNameCheck()"/><br/>
             <span class="font12lishu">密码：</span>
-            <input id="passWordInput" type="password" class="text" name="password" onblur="passWordLostCheck()"/><br/>
+            <input class="text" id="passWordInput" name="password" onblur="passWordCheck()" type="password"/><br/>
             <!-- 提交框 -->
             <input type="submit" class="btn font12lishu" value="注册"/>
             <input type="reset" class="btn font12lishu" value="重置" onclick="resetMessage()"/>

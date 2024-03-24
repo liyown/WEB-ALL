@@ -1,6 +1,5 @@
 package com.lyw.service.impl;
 
-import com.lyw.dao.interface_.SysUserDao;
 import com.lyw.dao.impl.SysUserDaoImpl;
 import com.lyw.pojo.SysUser;
 import com.lyw.service.interface_.SysUserService;
@@ -23,14 +22,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public int login(SysUser sysUser) {
-        SysUser user = sysUserDao.findUser(sysUser);
-        if (user != null) {
-            if (user.getUserPwd().equals(MD5.encrypt(sysUser.getUserPwd()))) {
-                return 0;
-            }
-            return -1;
-        }
-        return -2;
+    public SysUser findUser(SysUser sysUser) {
+        return sysUserDao.findUser(sysUser);
     }
 }
