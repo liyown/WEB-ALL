@@ -28,12 +28,17 @@ public class SysUserDaoImpl extends BaseDao implements SysUserDao {
     public int addSysUser(SysUser sysUser) {
         // 判断用户是否存在
         String sql1 = "SELECT uid, username, user_pwd userpwd from sys_user where username = ?";
+        String sql2 = "SELECT LAST_INSERT_ID()";
         SysUser sysUser1 = baseObjectQuery(SysUser.class, sql1, sysUser.getUserName());
         if (sysUser1 != null) {
             return 0;
         }
         String sql = "INSERT INTO sys_user(username, user_pwd) VALUES(?, ?)";
-        return baseUpdate(sql,sysUser.getUserName(),sysUser.getUserPwd());
+        int rows = baseUpdate(sql, sysUser.getUserName(), sysUser.getUserPwd());
+        if (rows > 0) {
+            return baseObjectQuery(Integer.class, sql2);
+        }
+        return 0;
     }
 }
 

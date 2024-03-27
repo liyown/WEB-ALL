@@ -33,4 +33,10 @@ public class TestScheduleDaoImpl {
         List<SysSchedule> all = sysScheduleDao.findAll();
         System.out.println(all);
     }
+
+    @Test
+    public void testSelectAllScheduleForUid() {
+        List<SysSchedule> all = sysScheduleDao.selectAllScheduleForUid(3);
+        System.out.println(all);
+    }
 }

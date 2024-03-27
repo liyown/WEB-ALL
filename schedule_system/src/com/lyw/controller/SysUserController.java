@@ -28,26 +28,17 @@ public class SysUserController extends BaseController {
      */
     protected void register(HttpServletRequest request, HttpServletResponse response) {
         //     接收用户参数
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        SysUser sysUser = WebUtil.readJsonFromRequest(request, SysUser.class);
         //  调用服务方法
-        SysUser sysUser = new SysUser(null, username, password);
-        int rows = sysUserService.register(sysUser);
+        assert sysUser != null;
+        int uid = sysUserService.register(sysUser);
 
-        if (rows > 0) {
+        if (uid > 0) {
             // 注册成功
-            try {
-                response.sendRedirect(request.getContextPath() + "/registSuccess.html");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            WebUtil.writeJsonToResponse(response, ResultCodeEnum.SUCCESS, null);
         } else {
             // 注册失败
-            try {
-                response.sendRedirect(request.getContextPath() + "/registFail.html");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            WebUtil.writeJsonToResponse(response, ResultCodeEnum.FAIL, null);
         }
     }
     /**
@@ -57,23 +48,24 @@ public class SysUserController extends BaseController {
      */
     protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //     接收用户参数
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        SysUser sysUser = WebUtil.readJsonFromRequest(request, SysUser.class);
         //  调用服务方法
-        SysUser sysUser = new SysUser(null, username, password);
         SysUser findSysUser = sysUserService.findUser(sysUser);
 
         if (findSysUser != null) {
-            if (findSysUser.getUserPwd().equals(MD5.encrypt(password))) {
+            assert sysUser != null;
+            if (findSysUser.getUserPwd().equals(MD5.encrypt(sysUser.getUserPwd()))) {
                 // 登录成功
                 request.getSession().setAttribute("SysUser", findSysUser);
-                response.sendRedirect("/showSchedule.html");
+                WebUtil.writeJsonToResponse(response, ResultCodeEnum.SUCCESS, findSysUser);
+                System.out.println("登录成功");
             } else {
-                response.sendRedirect("/loginUserPasswordError.html");
+                // 密码错误
+                WebUtil.writeJsonToResponse(response, ResultCodeEnum.PASSWORD_ERROR, null);
             }
         } else {
             // 用户不存在
-            response.sendRedirect("/loginUserNameError.html");
+            WebUtil.writeJsonToResponse(response, ResultCodeEnum.UERNAME_ERROR, null);
 
         }
     }
@@ -84,7 +76,6 @@ public class SysUserController extends BaseController {
         //  调用服务方法
         SysUser sysUser = new SysUser(null, username, null);
         SysUser findSysUser = sysUserService.findUser(sysUser);
-        response.setContentType("application/json;charset=utf-8");
         if (findSysUser != null) {
             // 用户存在
             WebUtil.writeJsonToResponse(response, ResultCodeEnum.USERNAME_EXIST, null);

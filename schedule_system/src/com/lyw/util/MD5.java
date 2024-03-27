@@ -14,6 +14,10 @@ import java.security.NoSuchAlgorithmException;
 public final class MD5 {
 
     public static String encrypt(String strSrc) {
+        // 判断是否是有效字符串
+        if (strSrc == null || strSrc.length() == 0) {
+            throw new RuntimeException("密码null！！");
+        }
         try {
             char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8',
                     '9', 'a', 'b', 'c', 'd', 'e', 'f' };            // 用于输出编码的类型

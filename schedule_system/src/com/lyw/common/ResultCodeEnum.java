@@ -8,6 +8,7 @@ package com.lyw.common;
  */
 public enum ResultCodeEnum {
     SUCCESS(200, "成功"),
+    FAIL(500, "失败"),
     UERNAME_ERROR(400, "用户名错误"),
     PASSWORD_ERROR(401, "密码错误"),
     NOT_LOGIN(402, "未登录"),

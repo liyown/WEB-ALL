@@ -15,7 +15,7 @@ import java.io.IOException;
  * @create: 2024-03-24 17:48
  * @Description:
  */
-@WebFilter(urlPatterns = {"/showSchedule", "/schedule/*"})
+// @WebFilter(urlPatterns = {"/showSchedule", "/schedule/*"})
 public class IsLoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

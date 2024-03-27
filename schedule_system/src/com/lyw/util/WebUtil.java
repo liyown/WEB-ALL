@@ -1,12 +1,12 @@
 package com.lyw.util;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONWriter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lyw.common.Result;
 import com.lyw.common.ResultCodeEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
@@ -16,9 +16,12 @@ import java.io.IOException;
  * @Description:
  */
 public class WebUtil {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     public static <T> void writeJsonToResponse(HttpServletResponse response, ResultCodeEnum resultCodeEnum, T data) {
         try {
-            response.getWriter().write(JSONObject.toJSONString(Result.build(resultCodeEnum, data), JSONWriter.Feature.WriteMapNullValue));
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().write(objectMapper.writeValueAsString(Result.build(resultCodeEnum, data)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,14 +37,17 @@ public class WebUtil {
      */
     public static <T> T readJsonFromRequest(HttpServletRequest request, Class<T> clazz) {
         try {
-            request.setCharacterEncoding("UTF-8");
+            BufferedReader reader = request.getReader();
             StringBuilder sb = new StringBuilder();
-            while (request.getReader().readLine() != null) {
-                sb.append(request.getReader().readLine());
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
             }
-            return JSONObject.parseObject(sb.toString(), clazz);
+            return objectMapper.readValue(sb.toString(), clazz);
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
+
     }
 }

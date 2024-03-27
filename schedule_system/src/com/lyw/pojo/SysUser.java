@@ -1,5 +1,6 @@
 package com.lyw.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class SysUser {
     private Integer uid;
+
+    @JsonProperty("username")
     private String userName;
-    private String UserPwd;
+    @JsonProperty("password")
+    private String userPwd;
 
 
 }

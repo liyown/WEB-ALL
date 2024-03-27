@@ -1,9 +1,12 @@
 package com.lyw.test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lyw.dao.impl.SysScheduleDaoImpl;
 import com.lyw.dao.impl.SysUserDaoImpl;
 import com.lyw.pojo.SysSchedule;
 import com.lyw.pojo.SysUser;
+import com.lyw.util.WebUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -34,6 +37,15 @@ public class TestSysUserDaoImpl {
     public void testFindAll() {
         List<SysUser> all = sysUserDaoImpl.findAll();
         System.out.println(all);
+    }
+    @Test
+    public void test11() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String ss = "{\"username\":\"qweqwe\",\"password\":\"123123\"}";
+
+        SysUser sysUser =  objectMapper.readValue(ss, SysUser.class);
+        System.out.println(sysUser);
+
     }
 
 }
